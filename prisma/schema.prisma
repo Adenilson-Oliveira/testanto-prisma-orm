@@ -26,3 +26,17 @@ model Teachers {
 
   @@map("teachers")
 }
+
+model Authors {
+  id   String @id @default(uuid())
+  name String @unique
+
+  @@map("authors")
+}
+
+model Books {
+  id   String @id @default(uuid())
+  name String @unique
+
+  @@map("books")
+}
