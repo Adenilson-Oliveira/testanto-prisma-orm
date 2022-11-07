@@ -28,15 +28,18 @@ model Teachers {
 }
 
 model Authors {
-  id   String @id @default(uuid())
-  name String @unique
+  id    String  @id @default(uuid())
+  name  String  @unique
+  books Books[]
 
   @@map("authors")
 }
 
 model Books {
-  id   String @id @default(uuid())
-  name String @unique
+  id           String  @id @default(uuid())
+  name         String  @unique
+  fk_id_author String
+  authors      Authors @relation(fields: [fk_id_author], references: [id])
 
   @@map("books")
 }
