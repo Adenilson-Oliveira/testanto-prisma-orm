@@ -48,25 +48,25 @@ model Books {
 
 // ===============> Models com relação de muitos pra muitos (many to many)
 model Estudantes {
-  id               String            @id @default(uuid())
+  id               String      @id @default(uuid())
   nome             String
   sobrenome        String
-  estudantes_aulas EstudantesAulas[]
+  estudantes_aulas Matricula[]
 
   @@map("estudantes")
 }
 
 model Aulas {
-  id               String            @id @default(uuid())
+  id               String      @id @default(uuid())
   titulo           String
   description      String
-  estudantes_aulas EstudantesAulas[]
+  estudantes_aulas Matricula[]
 
   @@map("aulas")
 }
 
 // tabela de associação
-model EstudantesAulas {
+model Matricula {
   id              String     @id @default(uuid())
   fk_id_estudante String
   estudante       Estudantes @relation(fields: [fk_id_estudante], references: [id])
@@ -74,5 +74,5 @@ model EstudantesAulas {
   aula            Aulas      @relation(fields: [fk_id_aula], references: [id])
   created_at      DateTime   @default(now())
 
-  @@map("estudantes_aulas")
+  @@map("matricula")
 }
