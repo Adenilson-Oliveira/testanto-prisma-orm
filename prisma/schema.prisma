@@ -7,6 +7,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// models com relação de um pra um (one to one)
 model Courses {
   id            String   @id @default(uuid())
   name          String   @unique
@@ -27,6 +28,7 @@ model Teachers {
   @@map("teachers")
 }
 
+// Models com relação de um pra muitos (one to many)
 model Authors {
   id    String  @id @default(uuid())
   name  String  @unique
@@ -42,4 +44,35 @@ model Books {
   authors      Authors @relation(fields: [fk_id_author], references: [id])
 
   @@map("books")
+}
+
+// ===============> Models com relação de muitos pra muitos (many to many)
+model Estudantes {
+  id               String            @id @default(uuid())
+  nome             String
+  sobrenome        String
+  estudantes_aulas EstudantesAulas[]
+
+  @@map("estudantes")
+}
+
+model Aulas {
+  id               String            @id @default(uuid())
+  titulo           String
+  description      String
+  estudantes_aulas EstudantesAulas[]
+
+  @@map("aulas")
+}
+
+// tabela de associação
+model EstudantesAulas {
+  id              String     @id @default(uuid())
+  fk_id_estudante String
+  estudante       Estudantes @relation(fields: [fk_id_estudante], references: [id])
+  fk_id_aula      String
+  aula            Aulas      @relation(fields: [fk_id_aula], references: [id])
+  created_at      DateTime   @default(now())
+
+  @@map("estudantes_aulas")
 }

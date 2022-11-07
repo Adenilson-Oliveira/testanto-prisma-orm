@@ -5,20 +5,20 @@ const prisma = new PrismaClient()
 async function main() {
   const result = await prisma.authors.create({
     data: {
-      name: 'Adenilson N Oliveira',
-      // books: {
-      //   createMany: {
-      //     data: [
-      //       {
-      //         name: 'Como começar na programação',
+      name: 'Mayk Brito',
+      books: {
+        createMany: {
+          data: [
+            {
+              name: 'Como começar na programação',
 
-      //       },
-      //       {
-      //         name: 'Sendo produtivo!',
-      //       },
-      //     ],
-      //   },
-      // },
+            },
+            {
+              name: 'Sendo produtivo!',
+            },
+          ],
+        },
+      },
     },
 
   })
