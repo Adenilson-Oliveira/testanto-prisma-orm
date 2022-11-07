@@ -76,3 +76,11 @@ model Matriculas {
 
   @@map("matriculas")
 }
+
+model Rifas {
+  id      String  @id @default(uuid())
+  num     Int
+  vendido Boolean
+
+  @@map("rifas")
+}

@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 
 async function main() {
 
-  const result = await prisma.books.findMany({
+  const result = await prisma.number.findMany({
 
 
   })
